@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { VersionOneContainerComponent } from './version-one-container/version-one-container.component';
 import { SharedModule } from '../shared-module/shared.module';
+import { VersionOneInfoComponent } from './version-one-info/version-one-info.component';
 
 const routes: Routes = [
   { path: '', component: VersionOneContainerComponent}
@@ -16,7 +17,8 @@ const routes: Routes = [
     RouterModule
   ],
   declarations: [
-    VersionOneContainerComponent
+    VersionOneContainerComponent,
+    VersionOneInfoComponent
   ]
 })
 export class VersionOneRoutingModule { }
