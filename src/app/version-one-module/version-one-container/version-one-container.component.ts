@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as Highcharts from 'highcharts';
+
 
 @Component({
   selector: 'app-version-one-container',
@@ -6,6 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./version-one-container.component.scss']
 })
 export class VersionOneContainerComponent implements OnInit {
+
+  Highcharts = Highcharts;
+  chartOptions = {
+    series: [{
+      data: [1, 2, 3]
+    }]
+  };
 
   constructor() { }
 
