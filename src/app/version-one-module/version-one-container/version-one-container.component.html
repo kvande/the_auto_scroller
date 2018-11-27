@@ -1,9 +1,6 @@
 <div class="wrapper">
-  <highcharts-chart
-  [Highcharts]="Highcharts"
-  [options]="chartOptions"
-
-  style="width: 100%; height: 400px;">
-  </highcharts-chart>
-  <app-version-one-info [selectedPoint]="selectedPoint" ></app-version-one-info>
+  <app-version-one-chart (didSelectPoint)="didSelectPoint($event)"></app-version-one-chart>
+  <app-version-one-info [selectedPoint]="selectedPoint"></app-version-one-info>
 </div>
+
+
