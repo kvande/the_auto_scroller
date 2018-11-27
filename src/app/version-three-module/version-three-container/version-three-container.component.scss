@@ -4,7 +4,8 @@
   grid-template-rows: 50px 1fr;
   grid-template-areas:
   "A A"
-  "B C";
+  "B B"
+  "C C";
   margin-top: 3rem;
 }
 
@@ -16,10 +17,10 @@ p {
   color: gray;
 }
 
-app-version-two-chart {
+app-version-three-chart {
   grid-area: B;
 }
 
-app-version-two-info {
+app-version-three-grid {
   grid-area: C;
 }

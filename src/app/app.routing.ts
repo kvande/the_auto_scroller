@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'one', loadChildren: './version-one-module/version-one.module#VersionOneModule' },
   { path: 'two', loadChildren: './version-two-module/version-two.module#VersionTwoModule' },
+  { path: 'three', loadChildren: './version-three-module/version-three.module#VersionThreeModule' },
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 
