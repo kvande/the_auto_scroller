@@ -9,7 +9,9 @@ import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 export class VersionThreeContainerComponent {
 
   public activeZoom: IZoomRange;
+  public selectedPoint: ISelectedPoint;
 
+  public didZoom = (zoom: IZoomRange) => this.activeZoom = zoom;
 
-  public didZoom = (point: IZoomRange) => this.activeZoom = point;
+  public didSelectPoint = (point: ISelectedPoint) => this.selectedPoint = point;
 }

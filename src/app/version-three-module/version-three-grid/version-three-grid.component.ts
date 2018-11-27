@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { SeriesService, ITimeSeries } from '../series.service';
+import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 
 
 interface ILooseObject {
@@ -16,6 +17,16 @@ export class VersionThreeGridComponent implements OnInit {
   public columnDefs: any;
   public rowData: any;
   public gridOptions: any;
+
+  @Input()
+  public set selectedPoint(value: ISelectedPoint) {
+    console.log('did select point');
+  }
+
+  @Input()
+  public set activeZoom(value: IZoomRange) {
+    console.log('did zoom');
+  }
 
   constructor(private seriesService: SeriesService) { }
 
@@ -42,10 +53,10 @@ export class VersionThreeGridComponent implements OnInit {
 
 
   private createColumnDefs = (series: Array<ITimeSeries>) => {
-    const create = (headerName, field, width = 70) => ({ headerName, field, width });
+    const create = (headerName, field, width = 65) => ({ headerName, field, width });
 
     const timeSteps = Array.from(series[0].values).map((_, j) => {
-      return create(`t=${j + 1}`, `t${j}`);
+      return create(`t=${j}`, `t${j}`);
     });
 
     return [create('Series name', 'name', 150), ...timeSteps];

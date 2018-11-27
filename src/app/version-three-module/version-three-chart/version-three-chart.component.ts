@@ -14,6 +14,9 @@ export class VersionThreeChartComponent implements OnInit {
   @Output()
   public didZoom = new EventEmitter<IZoomRange>();
 
+  @Output()
+  public didSelectPoint = new EventEmitter<ISelectedPoint>();
+
   public Highcharts = Highcharts;
   public chartOptions: any = {
     title: { text: ''},
@@ -28,7 +31,7 @@ export class VersionThreeChartComponent implements OnInit {
     this.chartOptions.plotOptions = {
       series: {
         events: {
-          selection: (event) => this.zoomed(event)
+          click: (event) => this.clickHandler(event)
         },
       }
     };
@@ -36,7 +39,7 @@ export class VersionThreeChartComponent implements OnInit {
     this.chartOptions.chart = {
       zoomType: 'xy',
       events: {
-        selection: (event) => this.zoomed(event)
+        selection: (event) => this.zoomHandler(event),
       }
     };
   }
@@ -49,12 +52,19 @@ export class VersionThreeChartComponent implements OnInit {
     }));
   }
 
+  private clickHandler = ( p: {point: any}) => {
 
-  private zoomed = (event: any) => {
+    this.didSelectPoint.emit({
+      name: p.point.series.name,
+      xValue: p.point.x,
+      yValue: p.point.y
+    });
+  }
+
+  private zoomHandler = (event: any) => {
     if (event.resetSelection) { return; }
 
-    console.dir(event);
-
+    // there is only one axis, saft to use the first one
     this.didZoom.emit({
       minX: event.xAxis[0].min,
       maxX: event.xAxis[0].max,
