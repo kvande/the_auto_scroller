@@ -18,9 +18,11 @@ export class VersionThreeGridComponent implements OnInit {
   public rowData: any;
   public gridOptions: any;
 
+  private allSeries: Array<ITimeSeries>;
+
   @Input()
   public set selectedPoint(value: ISelectedPoint) {
-    console.log('did select point');
+    this.setCellActive(value);
   }
 
   @Input()
@@ -35,10 +37,10 @@ export class VersionThreeGridComponent implements OnInit {
   }
 
   private setUpGrid = () => {
-    const s = this.seriesService.getSeries();
+    this.allSeries = this.seriesService.getSeries();
 
-    this.columnDefs = this.createColumnDefs(s);
-    this.rowData = this.createRowData(s);
+    this.columnDefs = this.createColumnDefs(this.allSeries);
+    this.rowData = this.createRowData(this.allSeries);
     this.gridOptions = this.createGridOptions();
   }
 
@@ -76,6 +78,14 @@ export class VersionThreeGridComponent implements OnInit {
     });
 
     return object;
+  }
+
+  private setCellActive = (event: ISelectedPoint) => {
+    if (this.gridOptions) {
+      const index = this.allSeries.findIndex(i => i.name === event.name);
+      this.gridOptions.api.setFocusedCell(index, `t${event.xValue}`, null);
+    }
+
   }
 
 }

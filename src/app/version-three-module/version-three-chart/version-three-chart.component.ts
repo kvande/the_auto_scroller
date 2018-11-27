@@ -31,7 +31,8 @@ export class VersionThreeChartComponent implements OnInit {
     this.chartOptions.plotOptions = {
       series: {
         events: {
-          click: (event) => this.clickHandler(event)
+          click: (event) => this.clickHandler(event),
+          // mouseOver: (event) => this.clickHandler(event)
         },
       }
     };
@@ -44,20 +45,39 @@ export class VersionThreeChartComponent implements OnInit {
     };
   }
 
-  private createChartSeries = (): Array<{type: string, data: Array<number>}> => {
+  private createChartSeries = (): Array<{type: string, data: Array<any>}> => {
     return  this.seriesService.getSeries().map(s => ( {
-      data: [...s.values],
+      data: this.createData(s.values),
       type: 'line',
-      name: s.name
+      name: s.name,
     }));
   }
 
-  private clickHandler = ( p: {point: any}) => {
+  // have to add events alongside the points
+  private createData = (values: Array<number>) => {
+    return values.map((i, j) => ({
+      x: j,
+      y: i,
+      events: {
+        mouseOver: (event) => this.hoverHandler(event)
+      }
+    }));
+  }
 
+  private hoverHandler = (event: any) => {
+    const e = event.target;
+    this.selectPointHandler(e.series.name, e.x, e.y);
+  }
+
+  private clickHandler = ( p: {point: any}) => {
+    this.selectPointHandler(p.point.series.name, p.point.x, p.point.y);
+  }
+
+  private selectPointHandler(name: string, xValue: number, yValue: number) {
     this.didSelectPoint.emit({
-      name: p.point.series.name,
-      xValue: p.point.x,
-      yValue: p.point.y
+      name,
+      xValue,
+      yValue
     });
   }
 
