@@ -12,8 +12,11 @@
   align-items: center;
   background-color: rgb(214, 214, 214);
 
-  a {
+  .header {
     font-size: 1.2rem;
+  }
+
+  a {
     letter-spacing: .2rem;
     margin: 0 1rem;
     text-decoration: none;

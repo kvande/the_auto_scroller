@@ -1,12 +1,12 @@
 <div class="wrapper">
   <div class="nav">
-    <a [routerLink]="['']">Auto scrolling <em>stuff</em></a>
-    <a [routerLink]="['one']">Version one</a>
+    <a class="header" [routerLink]="['']">Auto scrolling <em>stuff</em></a>
+    <div>
+      <a [routerLink]="['one']">Version one</a>
+      <a [routerLink]="['two']">Version two</a>
+    </div>
+
   </div>
-
-
-
-
 </div>
 
 <router-outlet></router-outlet>
