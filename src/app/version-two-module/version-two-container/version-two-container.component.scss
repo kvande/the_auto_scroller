@@ -1,5 +1,7 @@
 .wrapper {
   display: grid;
+  grid-template-columns: 1fr minmax(250px, 350px);
+  grid-template-rows: 50px 1fr;
   grid-template-areas:
   "A A"
   "B C";

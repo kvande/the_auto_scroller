@@ -4,3 +4,10 @@ export interface ISelectedPoint {
   xValue: number;
   yValue: number;
 }
+
+export interface IZoomRange {
+  minX: number;
+  maxX: number;
+  minY: number;
+  maxY: number;
+}

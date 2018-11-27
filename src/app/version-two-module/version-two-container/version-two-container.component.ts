@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ISelectedPoint } from 'src/app/interfaces/IForHighCharts';
+import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 
 @Component({
   selector: 'app-version-two-container',
@@ -8,8 +8,8 @@ import { ISelectedPoint } from 'src/app/interfaces/IForHighCharts';
 })
 export class VersionTwoContainerComponent {
 
-  public selectedPoint: ISelectedPoint;
+  public activeZoom: IZoomRange;
 
 
-  public didSelectPoint = (point: ISelectedPoint) => this.selectedPoint = point;
+  public didZoom = (point: IZoomRange) => this.activeZoom = point;
 }

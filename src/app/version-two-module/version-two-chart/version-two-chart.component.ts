@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as Highcharts from 'highcharts';
-import { ISelectedPoint } from 'src/app/interfaces/IForHighCharts';
+import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 
 
 @Component({
@@ -11,13 +11,10 @@ import { ISelectedPoint } from 'src/app/interfaces/IForHighCharts';
 export class VersionTwoChartComponent implements OnInit {
 
   @Output()
-  public didSelectPoint = new EventEmitter<ISelectedPoint>();
+  public didZoom = new EventEmitter<IZoomRange>();
 
   public Highcharts = Highcharts;
   public chartOptions: any = {
-    chart: {
-      zoomType: 'xy'
-    },
     series: [{
       data: [1, 2, 3, 4, 2, 5, 3, 6, 7, 8, 3],
       type: 'area'
@@ -33,21 +30,32 @@ export class VersionTwoChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
     this.chartOptions.plotOptions = {
       series: {
         events: {
-          click: (event) => this.clickHandler(event),
+          selection: (event) => this.zoomed(event)
         },
+      }
+    };
+    this.chartOptions.chart = {
+      zoomType: 'xy',
+      events: {
+        selection: (event) => this.zoomed(event)
       }
     };
   }
 
-  private clickHandler = ( p: {point: any}) => {
+  private zoomed = (event: any) => {
+    if (event.resetSelection) { return; }
 
-    this.didSelectPoint.emit({
-      name: p.point.series.name,
-      xValue: p.point.x,
-      yValue: p.point.y
+    console.dir(event);
+
+    this.didZoom.emit({
+      minX: event.xAxis[0].min,
+      maxX: event.xAxis[0].max,
+      minY: event.yAxis[0].min,
+      maxY: event.yAxis[0].max
     });
   }
 
