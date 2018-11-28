@@ -1,0 +1,8 @@
+
+
+
+Kjøre kurver grå. Når man er i celle i grid, vis kurve i sin farge.
+
+Støtte dobbelklikk i graf, går nå i editmodus i tabell
+
+Tidserienavnene bør ikke scrolle (pin 1.kolonne)

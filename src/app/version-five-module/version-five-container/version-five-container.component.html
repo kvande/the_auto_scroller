@@ -1,0 +1,12 @@
+
+<div class="wrapper">
+  <p>Version five (more navigation hints)</p>
+  <app-version-five-chart (didZoom)="didZoom($event)"
+                          (didSelectPoint)="didSelectPoint($event)"
+                          (didHoverPoint)="didHoverPoint($event)"></app-version-five-chart>
+  <app-version-five-grid [activeZoom]="activeZoom"
+                         [selectedPoint]="selectedPoint"
+                         [hoverPoint]="hoverPoint"></app-version-five-grid>
+</div>
+
+

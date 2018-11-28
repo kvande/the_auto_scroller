@@ -1,0 +1,28 @@
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr minmax(250px, 350px);
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+  "A A"
+  "B B"
+  "C C";
+  margin-top: 3rem;
+}
+
+p {
+  grid-area: A;
+  margin-left: 3rem;
+  font-size: 1.2rem;
+  letter-spacing: .2rem;
+  color: gray;
+}
+
+app-version-five-chart {
+  grid-area: B;
+}
+
+app-version-five-grid {
+  margin-top: 3rem;
+  grid-area: C;
+}
