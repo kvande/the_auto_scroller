@@ -17,6 +17,10 @@ export class VersionFourChartComponent implements OnInit {
   @Output()
   public didSelectPoint = new EventEmitter<ISelectedPoint>();
 
+  @Output()
+  public didHoverPoint = new EventEmitter<ISelectedPoint>();
+
+
   public Highcharts = Highcharts;
   public chartOptions: any = {
     title: { text: ''},
@@ -45,7 +49,7 @@ export class VersionFourChartComponent implements OnInit {
   }
 
   private createChartSeries = (): Array<{type: string, data: Array<any>}> => {
-    return  this.seriesService.getnSeries(8, 200).map(s => ( {
+    return  this.seriesService.getnSeries(2, 100).map(s => ( {
       data: this.createData(s.values),
       type: 'line',
       name: s.name,
@@ -65,18 +69,19 @@ export class VersionFourChartComponent implements OnInit {
 
   private hoverHandler = (event: any) => {
     const e = event.target;
-    this.selectPointHandler(e.series.name, e.x, e.y);
+
+    this.didHoverPoint.emit({
+      name: e.series.name,
+      xValue: e.x,
+      yValue: e.y
+    });
   }
 
   private clickHandler = ( p: {point: any}) => {
-    this.selectPointHandler(p.point.series.name, p.point.x, p.point.y);
-  }
-
-  private selectPointHandler(name: string, xValue: number, yValue: number) {
     this.didSelectPoint.emit({
-      name,
-      xValue,
-      yValue
+      name: p.point.series.name,
+      xValue: p.point.x,
+      yValue: p.point.y
     });
   }
 

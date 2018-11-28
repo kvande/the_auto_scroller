@@ -1,8 +1,12 @@
 
 <div class="wrapper">
   <p>Version four (zoom in grid)</p>
-  <app-version-four-chart (didZoom)="didZoom($event)" (didSelectPoint)="didSelectPoint($event)"></app-version-four-chart>
-  <app-version-four-grid [activeZoom]="activeZoom" [selectedPoint]="selectedPoint"></app-version-four-grid>
+  <app-version-four-chart (didZoom)="didZoom($event)"
+                          (didSelectPoint)="didSelectPoint($event)"
+                          (didHoverPoint)="didHoverPoint($event)"></app-version-four-chart>
+  <app-version-four-grid [activeZoom]="activeZoom"
+                         [selectedPoint]="selectedPoint"
+                         [hoverPoint]="hoverPoint"></app-version-four-grid>
 </div>
 
 

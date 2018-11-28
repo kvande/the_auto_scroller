@@ -10,8 +10,11 @@ export class VersionFourContainerComponent {
 
   public activeZoom: IZoomRange;
   public selectedPoint: ISelectedPoint;
+  public hoverPoint: ISelectedPoint;
 
   public didZoom = (zoom: IZoomRange) => this.activeZoom = zoom;
 
   public didSelectPoint = (point: ISelectedPoint) => this.selectedPoint = point;
+
+  public didHoverPoint = (point: ISelectedPoint) => this.hoverPoint = point;
 }

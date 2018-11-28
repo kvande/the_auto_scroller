@@ -26,6 +26,11 @@ export class VersionFourGridComponent implements OnInit {
   }
 
   @Input()
+  public set hoverPoint(value: ISelectedPoint) {
+    this.setCellHoverState(value);
+  }
+
+  @Input()
   public set activeZoom(range: IZoomRange) {
     this.setAccordingToZoom(range);
   }
@@ -37,7 +42,7 @@ export class VersionFourGridComponent implements OnInit {
   }
 
   private setUpGrid = () => {
-    this.allSeries = this.seriesService.getnSeries(8, 200);
+    this.allSeries = this.seriesService.getnSeries(2, 100);
 
     this.columnDefs = this.createColumnDefs(this.allSeries);
     this.rowData = this.createRowData(this.allSeries);
@@ -55,6 +60,8 @@ export class VersionFourGridComponent implements OnInit {
 
   private getTag = (index: number) => `t${index}`;
 
+  private getIndex = (tag: string) => tag.replace('t', '');
+
   private createColumnDefs = (series: Array<ITimeSeries>) => {
     const create = (headerName, field, width = 75) => ({ headerName, field, width });
 
@@ -62,7 +69,7 @@ export class VersionFourGridComponent implements OnInit {
       return create(`t=${j}`, this.getTag(j));
     });
 
-    return [create('Series name', 'name', 150), ...timeSteps];
+    return [create('Series name', 'series-name', 150), ...timeSteps];
   }
 
   private createRowData = (series: Array<ITimeSeries>) => {
@@ -72,7 +79,7 @@ export class VersionFourGridComponent implements OnInit {
   private createRowDataForSeries = (series: ITimeSeries) => {
     const object: ILooseObject = {};
 
-    object['name'] = series.name;
+    object['series-name'] = series.name;
 
     series.values.forEach((i, j) => {
       object[this.getTag(j)] = i;
@@ -85,33 +92,38 @@ export class VersionFourGridComponent implements OnInit {
 
     if (this.gridOptions) {
       const index = this.allSeries.findIndex(i => i.name === event.name);
+      const tag = this.getTag(event.xValue);
+      this.gridOptions.api.setFocusedCell(index, tag, null);
+      this.gridOptions.api.ensureColumnVisible(tag);
+    }
+  }
+
+  private setCellHoverState = (event: ISelectedPoint) => {
+
+    if (this.gridOptions) {
+
+      const index = this.allSeries.findIndex(i => i.name === event.name);
       this.gridOptions.api.setFocusedCell(index, `t${event.xValue}`, null);
     }
   }
 
+
   private setAccordingToZoom = (range: IZoomRange) => {
     if (range) {
+      const currentColumns: Array<any> = this.gridOptions.columnApi.getAllDisplayedVirtualColumns();
+      let first = currentColumns[0].colId !== 'series-name' ?  currentColumns[0].colId : this.getTag(0);
+      let last = currentColumns[currentColumns.length - 1].colId;
 
+      // try to put the focus somewhere in the middle of the range. To achive that have to know
+      // it moving to lower of higher x-value
+      first = this.getIndex(first);
+      last = this.getIndex(last);
+      const diff = last - first;
+      const zoomMin = Math.floor(range.minX);
+      let delta = first < zoomMin ? zoomMin + diff : zoomMin;
 
-      // console.log(`Should zoom between ${range.minX} and ${range.maxX}`);
-      // console.dir(range);
-
-      // const index = Math.floor(range.minX);
-      // console.log(index);
-      // this.gridOptions.api.ensureColumnVisible(this.getTag(index + 10));
-
-
-
-
-
-      // console.dir(`First displayed row ${this.gridOptions.api.getFirstDisplayedColumn()}`);
-      // console.dir(`Last displayed row ${this.gridOptions.api.getLastDisplayedRow()}`);
-
-      const b = this.gridOptions.columnApi.getAllDisplayedVirtualColumns();   // this is the one to use
-      // const a = this.gridOptions.api.getAllDisplayedColumns();
-      console.dir(b);
-      // https://stackoverflow.com/questions/42811020/how-do-i-get-and-set-ag-grid-state
-      // ensureColumnVisible
+      delta = delta > 0 ? delta : 0;
+      this.gridOptions.api.ensureColumnVisible(this.getTag(delta));
     }
 
   }
