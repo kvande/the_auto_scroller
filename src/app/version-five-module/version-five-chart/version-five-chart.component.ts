@@ -54,6 +54,8 @@ export class VersionFiveChartComponent implements OnInit {
       data: this.createData(s.values),
       type: 'line',
       name: s.name,
+      // color: 'red'
+
     }));
   }
 
@@ -70,9 +72,18 @@ export class VersionFiveChartComponent implements OnInit {
 
   private hoverHandler = (event: any) => {
     const e = event.target;
+    const series = event.target.series;
+
+    // TODO:  LAG VERSION 6
+
+    // series.options.color = "black";
+
+    // må få tak i serien her, og sette
+    // console.dir(series); //.series; = 'black';
 
     this.didHoverPoint.emit({
       name: e.series.name,
+      color: e.color,
       xValue: e.x,
       yValue: e.y
     });

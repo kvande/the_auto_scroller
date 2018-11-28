@@ -1,8 +1,12 @@
 
 
 
-Kjøre kurver grå. Når man er i celle i grid, vis kurve i sin farge.
+[ ] Kjøre kurver grå. Når man er i celle i grid, vis kurve i sin farge.
 
-Støtte dobbelklikk i graf, går nå i editmodus i tabell
+[ ] Støtte dobbelklikk i graf, går nå i editmodus i tabell
 
-Tidserienavnene bør ikke scrolle (pin 1.kolonne)
+[ x] Tidserienavnene bør ikke scrolle (pin 1.kolonne)
+
+[ ] // TODO:  LAG VERSION 6
+
+[ ] Hva skjedde med scrolling?? Forsvant de med pin??

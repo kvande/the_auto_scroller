@@ -1,6 +1,7 @@
 
 export interface ISelectedPoint {
   name: string;
+  color?: string;
   xValue: number;
   yValue: number;
 }

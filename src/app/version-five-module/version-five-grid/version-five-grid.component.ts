@@ -7,6 +7,11 @@ interface ILooseObject {
   [key: string]: any;
 }
 
+interface IActiveSeries {
+  name: string;
+  color?: string;
+}
+
 @Component({
   selector: 'app-version-five-grid',
   templateUrl: './version-five-grid.component.html',
@@ -19,7 +24,7 @@ export class VersionFiveGridComponent implements OnInit {
   public gridOptions: any;
 
   private allSeries: Array<ITimeSeries>;
-  private activeSeries = '';
+  private activeSeries: IActiveSeries;
 
   private agGridApi: any;
   private agGridColumnApi: any;
@@ -64,20 +69,22 @@ export class VersionFiveGridComponent implements OnInit {
       enableColResize: false,
       enableFilter: false,
       enableSorting: false,
-      getRowStyle:  (params: any) => {
+      getRowStyle: (params: any) => {
 
         const activeStyle = {
-          'color': 'blue',
-          'font-weight': 'bold'
+          'color': (this.activeSeries) ? this.activeSeries.color : 'black',
+          'font-style': 'italic',
+          'font-size': '12px'
         };
 
         const passiveStyle = {
           'color': 'gray',
-          'font-weight': 'normal'
+          'font-style': 'normal',
+          'font-size': '12px'
         };
 
-        const p  = params.data['series-name'];
-        return p === this.activeSeries ? activeStyle : passiveStyle;
+        const p = params.data['series-name'];
+        return (this.activeSeries && p === this.activeSeries.name) ? activeStyle : passiveStyle;
       }
     };
   }
@@ -93,7 +100,10 @@ export class VersionFiveGridComponent implements OnInit {
       return create(`t=${j}`, this.getTag(j));
     });
 
-    return [create('Series name', 'series-name', 150), ...timeSteps];
+    // should be pinned to the left
+    const firstColumn = {...create('Series name', 'series-name', 150), ...{pinned: 'left'}};
+
+    return [firstColumn, ...timeSteps];
   }
 
   private createRowData = (series: Array<ITimeSeries>) => {
@@ -126,7 +136,7 @@ export class VersionFiveGridComponent implements OnInit {
 
     if (this.gridOptions) {
 
-      this.activeSeries = event.name;
+      this.activeSeries = {name: event.name, color: event.color};
       const index = this.allSeries.findIndex(i => i.name === event.name);
       this.gridOptions.api.setFocusedCell(index, `t${event.xValue}`, null);
 
