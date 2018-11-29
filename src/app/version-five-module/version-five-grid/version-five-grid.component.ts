@@ -74,7 +74,7 @@ export class VersionFiveGridComponent implements OnInit {
         const activeStyle = {
           'color': (this.activeSeries) ? this.activeSeries.color : 'black',
           'font-style': 'italic',
-          'font-size': '12px'
+          'font-size': '13px'
         };
 
         const passiveStyle = {
@@ -150,6 +150,7 @@ export class VersionFiveGridComponent implements OnInit {
 
   private setAccordingToZoom = (range: IZoomRange) => {
     if (range) {
+      // tslint:disable-next-line:no-debugger
       const currentColumns: Array<any> = this.gridOptions.columnApi.getAllDisplayedVirtualColumns();
       let first = currentColumns[0].colId !== 'series-name' ?  currentColumns[0].colId : this.getTag(0);
       let last = currentColumns[currentColumns.length - 1].colId;
