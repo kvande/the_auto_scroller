@@ -49,8 +49,6 @@ export class VersionTwoChartComponent implements OnInit {
   private zoomed = (event: any) => {
     if (event.resetSelection) { return; }
 
-    console.dir(event);
-
     this.didZoom.emit({
       minX: event.xAxis[0].min,
       maxX: event.xAxis[0].max,
