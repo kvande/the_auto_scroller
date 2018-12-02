@@ -1,0 +1,2 @@
+
+[o] Zoom is broken if some series in chart is set to not visible (by using built in functionality in HighCharts)

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import * as Highcharts from 'highcharts';
+
 import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 import { SeriesService } from 'src/app/services/series.service';
 

@@ -33,6 +33,7 @@ export class VersionOneChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
     this.chartOptions.plotOptions = {
       series: {
         events: {

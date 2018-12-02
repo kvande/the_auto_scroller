@@ -1,0 +1,12 @@
+
+<div class="wrapper">
+  <p>Version six (dark theme)</p>
+  <app-version-six-chart (didZoom)="didZoom($event)"
+                          (didSelectPoint)="didSelectPoint($event)"
+                          (didHoverPoint)="didHoverPoint($event)"></app-version-six-chart>
+  <app-version-six-grid [activeZoom]="activeZoom"
+                         [selectedPoint]="selectedPoint"
+                         [hoverPoint]="hoverPoint"></app-version-six-grid>
+</div>
+
+

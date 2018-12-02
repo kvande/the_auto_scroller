@@ -49,11 +49,13 @@ export class VersionTwoChartComponent implements OnInit {
   private zoomed = (event: any) => {
     if (event.resetSelection) { return; }
 
+    const round = (v: number) => Math.round(v * 100) / 100;
+
     this.didZoom.emit({
-      minX: event.xAxis[0].min,
-      maxX: event.xAxis[0].max,
-      minY: event.yAxis[0].min,
-      maxY: event.yAxis[0].max
+      minX: round(event.xAxis[0].min),
+      maxX: round(event.xAxis[0].max),
+      minY: round(event.yAxis[0].min),
+      maxY: round(event.yAxis[0].max)
     });
   }
 

@@ -1,14 +1,18 @@
-<div class="wrapper">
-  <div class="nav">
-    <a class="header" [routerLink]="['']">Auto scrolling <em>stuff</em></a>
-    <div>
-      <a [routerLink]="['one']">One</a>
-      <a [routerLink]="['two']">Two</a>
-      <a [routerLink]="['three']">Three</a>
-      <a [routerLink]="['four']">Four</a>
-      <a [routerLink]="['five']">Five</a>
+<div [ngClass]="true ? 'dark-theme' : 'light-theme'">
+  <div class="wrapper">
+    <div class="nav">
+      <a class="header" [routerLink]="['']">Auto scrolling <em>stuff</em></a>
+      <div>
+        <a [routerLink]="['one']">One</a>
+        <a [routerLink]="['two']">Two</a>
+        <a [routerLink]="['three']">Three</a>
+        <a [routerLink]="['four']">Four</a>
+        <a [routerLink]="['five']">Five</a>
+        <a [routerLink]="['six']">Six</a>
+      </div>
     </div>
   </div>
+  <span>
+    <router-outlet></router-outlet>
+  </span>
 </div>
-
-<router-outlet></router-outlet>

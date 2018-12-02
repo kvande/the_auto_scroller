@@ -26,6 +26,7 @@ export class VersionThreeChartComponent implements OnInit {
   constructor(private seriesService: SeriesService) { }
 
   ngOnInit() {
+
     this.chartOptions.series = this.createChartSeries();
 
     this.chartOptions.plotOptions = {
