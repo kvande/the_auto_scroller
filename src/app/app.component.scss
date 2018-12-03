@@ -1,11 +1,35 @@
 
+@mixin dark {
+  background-color: rgb(47, 47, 47);
+
+  .nav {
+    background-color: #222222;
+  }
+  a {
+    color: white;
+  }
+}
+
+@mixin light {
+  background-color: white;
+
+  .nav {
+    background-color:  rgb(216, 216, 216);
+  }
+
+  a {
+    color: black;
+  }
+}
+
+
 .dark-theme {
-  background-color: #302e2e;
+  @include dark();
   height: 100vh;
 }
 
 .light-theme {
-  background-color: white;
+  @include light();
   height: 100vh;
 }
 
@@ -20,7 +44,6 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: rgb(47, 47, 47);
 
   .header {
     font-size: 1.2rem;
@@ -30,7 +53,7 @@
     letter-spacing: .2rem;
     margin: 0 1rem;
     text-decoration: none;
-    color: white;
     font-size: .9rem;
   }
 }
+

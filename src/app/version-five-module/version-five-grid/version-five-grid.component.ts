@@ -58,7 +58,7 @@ export class VersionFiveGridComponent implements OnInit {
   }
 
   private setUpGrid = () => {
-    this.allSeries = this.seriesService.getnSeries(4, 100);
+    this.allSeries = this.seriesService.getnSeries(10, 100);
 
     this.columnDefs = this.createColumnDefs(this.allSeries);
     this.rowData = this.createRowData(this.allSeries);

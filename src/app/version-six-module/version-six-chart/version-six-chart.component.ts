@@ -52,9 +52,7 @@ export class VersionSixChartComponent implements OnInit {
       backgroundColor: '#302e2e'
     };
 
-
-
-    // this.chartOptions.theme = this.getTheme();
+    this.chartOptions = {...this.getTheme(), ...this.chartOptions};
   }
 
   private createChartSeries = (): Array<{type: string, data: Array<any>}> => {

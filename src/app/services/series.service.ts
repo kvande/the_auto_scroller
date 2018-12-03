@@ -44,12 +44,27 @@ export class SeriesService {
     return match ? match : this.addToCache(name, numberOfValues);
   }
 
+  // random number gave a bit too much mess, try to calm everything down a bit
   private addToCache = (name: string, numberOfValues: number): ICachedSeries => {
-    const values = [];
+    let values = [];
 
-    for (let i = 0; i < numberOfValues; i++) {
-      values.push(Math.floor(Math.random() * 10) + 1  );
+    for (let i = 0; i <= numberOfValues; i++) {
+      const length = Math.floor(Math.random() * 10) + 1;
+      const max = Math.floor(Math.random() * 10);
+      const min = max - 1;
+      const next = this.getValueWithinRange(min, max);
+
+      for (let j = 0; j < length; j++) {
+        values.push(next);
+      }
+
+      if (values.length > numberOfValues ) {
+        break;
+      }
     }
+
+    // probably to long
+    values = values.slice(0, numberOfValues);
 
     const c: ICachedSeries = ({ name, values });
     this.seriesCache.push(c);
@@ -57,6 +72,12 @@ export class SeriesService {
 
   }
 
+  private getValueWithinRange = (min: number, max: number) => {
+    if (min < 0) {
+      min = 0;
+    }
 
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
 
 }

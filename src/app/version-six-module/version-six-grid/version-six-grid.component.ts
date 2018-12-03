@@ -151,7 +151,7 @@ export class VersionSixGridComponent implements OnInit {
   // be 'firstColumnTag', not sure why, but that is how it rolls
   private setAccordingToZoom = (range: IZoomRange) => {
     if (range) {
-      console.table(range);
+      // console.table(range);
 
       const currentColumns: Array<any> = this.gridOptions.columnApi.getAllDisplayedVirtualColumns();
       let first = currentColumns[0].colId;
