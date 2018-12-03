@@ -1,8 +1,10 @@
 .wrapper {
   display: grid;
+  grid-template-columns: auto 100px 1fr;
+  grid-template-rows: 40px 1fr;
   grid-template-areas:
-  "A A"
-  "B C";
+  "A A A"
+  "B . C";
   margin-top: 3rem;
 }
 
@@ -20,4 +22,5 @@ app-version-one-chart {
 
 app-version-one-info {
   grid-area: C;
+  justify-self: left;
 }

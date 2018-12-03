@@ -1,12 +1,11 @@
 
 
 
-[ ] Kjøre kurver grå. Når man er i celle i grid, vis kurve i sin farge.
+[v6] Kjøre kurver grå. Når man er i celle i grid, vis kurve i sin farge.
 
-[ ] Støtte dobbelklikk i graf, går nå i editmodus i tabell
+[never?] Støtte dobbelklikk i graf, går nå i editmodus i tabell
+[x] Tidserienavnene bør ikke scrolle (pin 1.kolonne)
 
-[ x] Tidserienavnene bør ikke scrolle (pin 1.kolonne)
+[x] // TODO:  LAG VERSION 6
 
-[ ] // TODO:  LAG VERSION 6
-
-[ ] Hva skjedde med scrolling?? Forsvant de med pin??
+[x] Hva skjedde med scrolling?? Forsvant de med pin??

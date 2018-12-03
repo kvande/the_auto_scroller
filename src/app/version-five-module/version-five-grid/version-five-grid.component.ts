@@ -75,13 +75,15 @@ export class VersionFiveGridComponent implements OnInit {
         const activeStyle = {
           'color': (this.activeSeries) ? this.activeSeries.color : 'black',
           'font-style': 'italic',
-          'font-size': '13px'
+          'font-size': '13px',
+          'font-weight': 700
         };
 
         const passiveStyle = {
           'color': 'gray',
           'font-style': 'normal',
-          'font-size': '12px'
+          'font-size': '12px',
+          'font-weight': 100
         };
 
         const p = params.data[this.firstColumnTag];
