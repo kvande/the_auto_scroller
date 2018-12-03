@@ -27,7 +27,6 @@ export class VersionThreeGridComponent implements OnInit {
 
   @Input()
   public set activeZoom(value: IZoomRange) {
-    console.log('did zoom');
   }
 
   constructor(private seriesService: SeriesService) { }
@@ -49,7 +48,6 @@ export class VersionThreeGridComponent implements OnInit {
       enableColResize: false,
       enableFilter: false,
       enableSorting: false,
-      // editType: 'node'
     };
   }
 

@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,13 +7,19 @@ import { Component, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./app.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class AppComponent {
-  public isGreen = false;
+export class AppComponent implements OnInit {
 
-  public changeColor = () => {
-    this.isGreen = !this.isGreen;
+  public isDark = false;
 
+  constructor(private router: Router) {}
 
-    console.log(`Status er nå ${this.isGreen}`);
+  public ngOnInit() {
+    this.router.events.subscribe(i => {
+
+      if (i instanceof NavigationEnd)  {
+        this.isDark = i.url.toLowerCase().includes('six');
+      }
+    });
+
   }
 }
