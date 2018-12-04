@@ -9,12 +9,18 @@ import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 export class VersionSevenContainerComponent {
 
   public activeZoom: IZoomRange;
-  public selectedPoint: ISelectedPoint;
-  public hoverPoint: ISelectedPoint;
+  public selectedChartPoint: ISelectedPoint;
+  public hoverChartPoint: ISelectedPoint;
+
+  public selectedGridPoint: ISelectedPoint;
+
 
   public didZoom = (zoom: IZoomRange) => this.activeZoom = zoom;
 
-  public didSelectPoint = (point: ISelectedPoint) => this.selectedPoint = point;
+  public didSelectChartPoint = (point: ISelectedPoint) => this.selectedChartPoint = point;
 
-  public didHoverPoint = (point: ISelectedPoint) => this.hoverPoint = point;
+  public didHoverChartPoint = (point: ISelectedPoint) => this.hoverChartPoint = point;
+
+  public didSelectGridPoint = (point: ISelectedPoint) => this.selectedGridPoint = point;
+
 }

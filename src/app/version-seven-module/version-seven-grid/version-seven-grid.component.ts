@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 import { ITimeSeries, SeriesService } from 'src/app/services/series.service';
 
@@ -45,6 +45,9 @@ export class VersionSevenGridComponent implements OnInit {
     this.setAccordingToZoom(range);
   }
 
+  @Output()
+  public didSelectPoint = new EventEmitter<ISelectedPoint>();
+
   constructor(private seriesService: SeriesService) { }
 
   public ngOnInit(): void {
@@ -55,6 +58,20 @@ export class VersionSevenGridComponent implements OnInit {
   public onGridReady = (params) => {
     this.agGridApi = params.api;
     this.agGridColumnApi = params.columnApi;
+  }
+
+  public cellGotFocus = (event: any) => {
+
+    if (event && event.column) {
+      // console.log('Row is ', event.rowIndex, ' -- col is ', event.column.colId);
+      this.didSelectPoint.emit({
+        name: this.allSeries[event.rowIndex].name,
+        xValue: 1,
+        yValue: 111
+      });
+
+    }
+
   }
 
   private setUpGrid = () => {
@@ -75,7 +92,7 @@ export class VersionSevenGridComponent implements OnInit {
         const activeStyle = {
           'color': (this.activeSeries) ? this.activeSeries.color : 'black',
           'font-size': '13px',
-          'border': '1px solid rgb(182, 182, 182)',
+          'border': '2px solid rgb(182, 182, 182)',
           'transition': 'border-width 0.6s linear'
         };
 

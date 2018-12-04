@@ -2,11 +2,13 @@
 <div class="wrapper">
   <p>Version six (dark theme)</p>
   <app-version-seven-chart (didZoom)="didZoom($event)"
-                          (didSelectPoint)="didSelectPoint($event)"
-                          (didHoverPoint)="didHoverPoint($event)"></app-version-seven-chart>
+                          (didSelectPoint)="didSelectChartPoint($event)"
+                          (didHoverPoint)="didHoverChartPoint($event)"
+                          [selectedPoint]="selectedGridPoint"></app-version-seven-chart>
   <app-version-seven-grid [activeZoom]="activeZoom"
-                         [selectedPoint]="selectedPoint"
-                         [hoverPoint]="hoverPoint"></app-version-seven-grid>
+                          [selectedPoint]="selectedChartPoint"
+                          [hoverPoint]="hoverChartPoint"
+                          (didSelectPoint)="didSelectGridPoint($event)"></app-version-seven-grid>
 </div>
 
 

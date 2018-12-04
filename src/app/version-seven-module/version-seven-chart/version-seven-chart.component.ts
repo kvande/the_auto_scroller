@@ -1,7 +1,8 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ISelectedPoint, IZoomRange } from 'src/app/interfaces/IForHighCharts';
 import { SeriesService } from 'src/app/services/series.service';
+import { createPipeInstance } from '@angular/core/src/view/provider';
 
 
 @Component({
@@ -10,6 +11,9 @@ import { SeriesService } from 'src/app/services/series.service';
   styleUrls: ['./version-seven-chart.component.scss']
 })
 export class VersionSevenChartComponent implements OnInit {
+
+
+  public updateFromInput = false;
 
   @Output()
   public didZoom = new EventEmitter<IZoomRange>();
@@ -20,6 +24,10 @@ export class VersionSevenChartComponent implements OnInit {
   @Output()
   public didHoverPoint = new EventEmitter<ISelectedPoint>();
 
+  @Input()
+  public set selectedPoint(value: ISelectedPoint) {
+    // nothing seems to work here, quiting this for now
+  }
 
   public Highcharts = Highcharts;
   public chartOptions: any = {
@@ -31,8 +39,6 @@ export class VersionSevenChartComponent implements OnInit {
 
   ngOnInit() {
 
-    this.Highcharts.setOptions(Highcharts.dark);
-
     this.chartOptions.series = this.createChartSeries();
 
     this.chartOptions.plotOptions = {
@@ -40,7 +46,7 @@ export class VersionSevenChartComponent implements OnInit {
         events: {
           click: (event) => this.clickHandler(event),
           legendItemClick: (event) => this.doubleClickHandler(event)  // use double click in the future
-        },
+        }
       }
     };
 
@@ -77,13 +83,6 @@ export class VersionSevenChartComponent implements OnInit {
   private hoverHandler = (event: any) => {
     const e = event.target;
     const series = event.target.series;
-
-    // TODO:  LAG VERSION 6
-
-    // series.options.color = "black";
-
-    // må få tak i serien her, og sette
-    // console.dir(series); //.series; = 'black';
 
     this.didHoverPoint.emit({
       name: e.series.name,

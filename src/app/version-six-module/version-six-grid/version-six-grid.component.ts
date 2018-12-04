@@ -75,8 +75,7 @@ export class VersionSixGridComponent implements OnInit {
         const activeStyle = {
           'color': (this.activeSeries) ? this.activeSeries.color : 'black',
           'font-size': '13px',
-          'border': '1px solid rgb(182, 182, 182)',
-          'transition': 'border-width 0.6s linear'
+          'border': '2px solid rgb(182, 182, 182)',
         };
 
         const passiveStyle = {

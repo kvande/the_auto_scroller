@@ -4,5 +4,6 @@
   [columnDefs]="columnDefs"
   [gridOptions]="gridOptions"
   (gridReady)="onGridReady($event)"
+  (cellFocused)="cellGotFocus($event)"
   >
 </ag-grid-angular>
