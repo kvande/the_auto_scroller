@@ -1,0 +1,39 @@
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr minmax(250px, 350px);
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+  "A A"
+  "B B"
+  "C C";
+  margin: 3rem 1rem .2rem 1rem;
+  //background-color: #302e2e;
+}
+
+
+p {
+  grid-area: A;
+  margin-left: 3rem;
+  font-size: 1.2rem;
+  letter-spacing: .2rem;
+  color: white;
+}
+
+app-version-seven-chart {
+  grid-area: B;
+}
+
+app-version-seven-grid {
+  margin-top: 3rem;
+  grid-area: C;
+}
+
+::ng-deep .ag-header-cell-text {
+  font-size: 12px;
+}
+
+
+:host-context(.app-body) {
+  background-color: red;
+}

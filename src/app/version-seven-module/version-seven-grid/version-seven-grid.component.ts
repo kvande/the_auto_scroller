@@ -13,11 +13,11 @@ interface IActiveSeries {
 }
 
 @Component({
-  selector: 'app-version-six-grid',
-  templateUrl: './version-six-grid.component.html',
-  styleUrls: ['./version-six-grid.component.scss']
+  selector: 'app-version-seven-grid',
+  templateUrl: './version-seven-grid.component.html',
+  styleUrls: ['./version-seven-grid.component.scss']
 })
-export class VersionSixGridComponent implements OnInit {
+export class VersionSevenGridComponent implements OnInit {
 
   public columnDefs: any;
   public rowData: any;
@@ -58,7 +58,7 @@ export class VersionSixGridComponent implements OnInit {
   }
 
   private setUpGrid = () => {
-    this.allSeries = this.seriesService.getnSeries(4, 60);
+    this.allSeries = this.seriesService.getnSeries(3, 60);
 
     this.columnDefs = this.createColumnDefs(this.allSeries);
     this.rowData = this.createRowData(this.allSeries);

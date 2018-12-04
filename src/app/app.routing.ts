@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'four', loadChildren: './version-four-module/version-four.module#VersionFourModule'},
   { path: 'five', loadChildren: './version-five-module/version-five.module#VersionFiveModule'},
   { path: 'six', loadChildren: './version-six-module/version-six.module#VersionSixModule' },
+  { path: 'seven', loadChildren: './version-seven-module/version-seven.module#VersionSevenModule' },
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

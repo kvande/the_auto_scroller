@@ -17,7 +17,8 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(i => {
 
       if (i instanceof NavigationEnd)  {
-        this.isDark = i.url.toLowerCase().includes('six');
+        const url = i.url.toLowerCase();
+        this.isDark = url.includes('six') || url.includes('seven');
       }
     });
 
