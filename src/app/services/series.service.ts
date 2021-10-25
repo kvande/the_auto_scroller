@@ -46,7 +46,7 @@ export class SeriesService {
 
   // random number gave a bit too much mess, try to calm everything down a bit
   private addToCache = (name: string, numberOfValues: number): ICachedSeries => {
-    let values = [];
+    let values = new Array<any>();
 
     for (let i = 0; i <= numberOfValues; i++) {
       const length = Math.floor(Math.random() * 10) + 1;

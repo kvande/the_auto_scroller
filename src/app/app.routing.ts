@@ -4,13 +4,13 @@ import { LandingComponent } from './landing/landing.component';
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
-  { path: 'one', loadChildren: './version-one-module/version-one.module#VersionOneModule' },
-  { path: 'two', loadChildren: './version-two-module/version-two.module#VersionTwoModule'},
-  { path: 'three', loadChildren: './version-three-module/version-three.module#VersionThreeModule'},
-  { path: 'four', loadChildren: './version-four-module/version-four.module#VersionFourModule'},
-  { path: 'five', loadChildren: './version-five-module/version-five.module#VersionFiveModule'},
-  { path: 'six', loadChildren: './version-six-module/version-six.module#VersionSixModule' },
-  { path: 'seven', loadChildren: './version-seven-module/version-seven.module#VersionSevenModule' },
+  { path: 'one', loadChildren: () => import('./version-one-module/version-one.module').then(i => i.VersionOneModule) },
+  { path: 'two', loadChildren: () => import('./version-two-module/version-two.module').then(i => i.VersionTwoModule) },
+  { path: 'three', loadChildren: () => import('./version-three-module/version-three.module').then(i => i.VersionThreeModule) },
+  { path: 'four', loadChildren: () => import('./version-four-module/version-four.module').then(i => i.VersionFourModule) },
+  { path: 'five', loadChildren: () => import('./version-five-module/version-five.module').then(i => i.VersionFiveModule) },
+  { path: 'six', loadChildren: () => import('./version-six-module/version-six.module').then(i => i.VersionSixModule) },
+  { path: 'seven', loadChildren: () => import('./version-seven-module/version-seven.module').then(i => i.VersionSevenModule) },
   { path: '**', redirectTo: '', pathMatch: 'full'}
 ];
 

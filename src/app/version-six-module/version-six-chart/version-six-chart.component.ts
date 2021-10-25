@@ -31,7 +31,7 @@ export class VersionSixChartComponent implements OnInit {
 
   ngOnInit() {
 
-    this.Highcharts.setOptions(Highcharts.dark);
+    // this.Highcharts.setOptions(Highcharts.dark);
 
     this.chartOptions.series = this.createChartSeries();
 

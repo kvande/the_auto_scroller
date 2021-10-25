@@ -36,8 +36,8 @@ export class VersionFiveChartComponent implements OnInit {
     this.chartOptions.plotOptions = {
       series: {
         events: {
-          click: (event) => this.clickHandler(event),
-          legendItemClick: (event) => this.doubleClickHandler(event)  // use double click in the future
+          click: (event: any) => this.clickHandler(event),
+          legendItemClick: (event: any) => this.doubleClickHandler(event)  // use double click in the future
         },
       }
     };
@@ -45,7 +45,7 @@ export class VersionFiveChartComponent implements OnInit {
     this.chartOptions.chart = {
       zoomType: 'xy',
       events: {
-        selection: (event) => this.zoomHandler(event),
+        selection: (event: any) => this.zoomHandler(event),
       }
     };
   }
@@ -66,7 +66,7 @@ export class VersionFiveChartComponent implements OnInit {
       x: j,
       y: i,
       events: {
-        mouseOver: (event) => this.hoverHandler(event)
+        mouseOver: (event: any) => this.hoverHandler(event)
       }
     }));
   }
